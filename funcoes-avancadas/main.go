@@ -23,6 +23,15 @@ func onlySumm(numbers ...int) int { // passando um type seguindo o formato de ".
 	return total
 }
 
+// função recursiva.
+func fibonacci(position uint) uint {
+	if (position <= 1) {
+		return position // retorna a propria posição quando for menor ou igual a 1.
+	}
+
+	return fibonacci(position - 2) + fibonacci(position - 1) // chamando a função recursiva e realizando o calculo de fibonacci.
+} // não é recomendado para muitas execuções, pois é muito lento e pode cair em estouro de piha.
+
 func main() {
 	a := 10
 	b := 20
@@ -51,4 +60,13 @@ func main() {
 
 		fmt.Println(text, total)
 	}("Total da soma via função anônima:", 1, 10, 15, 50, 100)
+
+	// chamando a função recursiva.
+	position1 := uint(10)
+
+	for i := uint(0); i < position1; i++ {
+		fmt.Println("O número fibonacci de", i, "é:", fibonacci(i)) // vai imprimir o número da sequência de fibonacci de 0 a 10.
+	}
+
+		fmt.Println("O número fibonacci de 20 é:", fibonacci(position1)) // 55
 }
