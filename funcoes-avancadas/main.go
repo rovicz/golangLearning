@@ -35,4 +35,20 @@ func main() {
 	// chamando a função variática e passando 10 argumentos.
 	summVariaty := onlySumm(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) // 10 argumentos.
 	fmt.Println("Soma da função variática:", summVariaty) // 55
+
+	// função anônima.
+	func () {
+		fmt.Println("Olá mundo!")
+	}()
+
+	// função anônima (com parametros).
+	func (text string, numbers ...int) {
+		total := 0
+
+		for _, number := range numbers {
+			total += number
+		}
+
+		fmt.Println(text, total)
+	}("Total da soma via função anônima:", 1, 10, 15, 50, 100)
 }
