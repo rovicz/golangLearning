@@ -74,6 +74,18 @@ func studientIsOkayUsingPanic(n1, n2 float32) bool {
 	panic("A média é exatamente 6.") // mata a execução da aplicação.
 }
 
+
+// closure
+func closure() func() {
+	text := "Dentro da função closure."
+
+	func1 := func() {
+		fmt.Println(text)
+	}
+
+	return func1
+}
+
 func main() {
 	a := 10
 	b := 20
@@ -118,4 +130,11 @@ func main() {
 	// panic e recover
 	fmt.Println(studientIsOkayUsingPanic(6,6)) // A média é exatamente 6. Caso não use um recover, a aplicação morre.
 	fmt.Println("Após execução da função studientIsOkayUsingPanicOrRecover utilizando panic.")
+
+	// closure
+	text := "Dentro da função main."
+	fmt.Println(text)
+
+	func2 := closure()
+	func2() // imprime "Dentro da função closure." e não "Dentro da função main." já que a clousure é uma função anônima.
 }
