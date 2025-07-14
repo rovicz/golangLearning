@@ -34,14 +34,6 @@ func fibonacci(position uint) uint {
 
 // defer
 
-func funcOne(){
-	fmt.Println("funcOne")
-}
-
-func funcTwo(){
-	fmt.Println("funcTwo")
-}
-
 func studientIsOkay(n1, n2 float32) bool {
 	defer fmt.Println("Média calculada. O Resultado será retornado em breve.") // o defer atrasa a exebição da mensagem e só retorna ANTES de qualquer return dentro da função.
 	fmt.Println("Média sendo calculada...")
@@ -58,6 +50,28 @@ func studientIsOkay(n1, n2 float32) bool {
 	// Média sendo calculada...
 	// Média calculada. O Resultado será retornado em breve.
 	// true or false.
+}
+
+// panic e recover
+
+func tryingToRecover() {
+	if r := recover(); r != nil { // gera um recover via if init, caso o recover seja diferente de null, ele salva a aplicação.
+		defer fmt.Println("A aplicação foi recuperada com sucesso!")
+		fmt.Println("Recuperando a aplicação...")
+	}
+}
+
+func studientIsOkayUsingPanic(n1, n2 float32) bool {
+	defer tryingToRecover() // recupera a aplicação caso ocorra um panic.
+	mid := (n1 + n2) / 2
+
+	if mid > 6 {
+		return true
+	} else if mid < 6 {
+		return false
+	}
+
+	panic("A média é exatamente 6.") // mata a execução da aplicação.
 }
 
 func main() {
@@ -99,8 +113,9 @@ func main() {
 	fmt.Println("O número fibonacci de 20 é:", fibonacci(position1)) // 55
 
 	// defer - como é dito pela própria função, ele adia a execução de una função e potencialmente realiza o que vem a seguir dela.
-	defer funcOne() // adia a execução da função funcOne.
-	funcTwo() // executa a função funcTwo e depois acaba executando a funcOne.
-
 	fmt.Println(studientIsOkay(6,6)) // true
+
+	// panic e recover
+	fmt.Println(studientIsOkayUsingPanic(6,6)) // A média é exatamente 6. Caso não use um recover, a aplicação morre.
+	fmt.Println("Após execução da função studientIsOkayUsingPanicOrRecover utilizando panic.")
 }
