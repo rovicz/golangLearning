@@ -86,6 +86,12 @@ func closure() func() {
 	return func1
 }
 
+// ponteirs
+
+func changeNumber(number *int) { // define um ponteiro para a variável number - não necessita de retorno.
+	*number = *number * -1 // retorna o valor da variável number e multiplica-o por -1.
+}
+
 func main() {
 	a := 10
 	b := 20
@@ -137,4 +143,13 @@ func main() {
 
 	func2 := closure()
 	func2() // imprime "Dentro da função closure." e não "Dentro da função main." já que a clousure é uma função anônima.
+
+	// pointers
+	number := 15
+	changeNumber(&number) // altera a variável number de 15 para -15 (var * -1), passando a variável como referência de memória.
+	fmt.Println(number) // o valor da variável number agora é -15.
+
+	// & = onde a variável se encontra na memória.
+	// * = o valor da variável.
+	// realizando assim uma alteração do valor da variável mesmo que fora da função.
 }
