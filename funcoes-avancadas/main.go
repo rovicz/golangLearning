@@ -32,6 +32,34 @@ func fibonacci(position uint) uint {
 	return fibonacci(position - 2) + fibonacci(position - 1) // chamando a função recursiva e realizando o calculo de fibonacci.
 } // não é recomendado para muitas execuções, pois é muito lento e pode cair em estouro de piha.
 
+// defer
+
+func funcOne(){
+	fmt.Println("funcOne")
+}
+
+func funcTwo(){
+	fmt.Println("funcTwo")
+}
+
+func studientIsOkay(n1, n2 float32) bool {
+	defer fmt.Println("Média calculada. O Resultado será retornado em breve.") // o defer atrasa a exebição da mensagem e só retorna ANTES de qualquer return dentro da função.
+	fmt.Println("Média sendo calculada...")
+
+	mid := (n1 + n2) / 2
+
+	if mid >= 6 {
+		return true // retorna a função do defer e após isso retorna o valor, no caso "true".
+	}
+	return false // retorna a função do defer e após isso retorna o valor, no caso "false".
+
+	// então o retorno seria assim:
+
+	// Média sendo calculada...
+	// Média calculada. O Resultado será retornado em breve.
+	// true or false.
+}
+
 func main() {
 	a := 10
 	b := 20
@@ -68,5 +96,11 @@ func main() {
 		fmt.Println("O número fibonacci de", i, "é:", fibonacci(i)) // vai imprimir o número da sequência de fibonacci de 0 a 10.
 	}
 
-		fmt.Println("O número fibonacci de 20 é:", fibonacci(position1)) // 55
+	fmt.Println("O número fibonacci de 20 é:", fibonacci(position1)) // 55
+
+	// defer - como é dito pela própria função, ele adia a execução de una função e potencialmente realiza o que vem a seguir dela.
+	defer funcOne() // adia a execução da função funcOne.
+	funcTwo() // executa a função funcTwo e depois acaba executando a funcOne.
+
+	fmt.Println(studientIsOkay(6,6)) // true
 }
