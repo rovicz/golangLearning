@@ -92,6 +92,13 @@ func changeNumber(number *int) { // define um ponteiro para a variável number -
 	*number = *number * -1 // retorna o valor da variável number e multiplica-o por -1.
 }
 
+// init
+
+func init() { // a ordem de onde a função é criada não importa, mas a ordem de execução é importante.
+	fmt.Println("Executando a função init!") // é uma função que executa antes da função main.
+} // poderia ser func main() e depois func init() por exemplo, que mesmo assim executaria a init primeiro.
+
+
 func main() {
 	a := 10
 	b := 20
@@ -152,4 +159,6 @@ func main() {
 	// & = onde a variável se encontra na memória.
 	// * = o valor da variável.
 	// realizando assim uma alteração do valor da variável mesmo que fora da função.
+
+	// init
 }
